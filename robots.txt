@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://bbrubidev.github.io/sitemap.xml
+Host: https://bbrubidev.github.io
