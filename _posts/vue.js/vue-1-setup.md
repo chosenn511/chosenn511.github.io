@@ -1,0 +1,203 @@
+---
+title: Vue.js _ 1. Vue 소개 및 설치
+date: 2017-10-16
+tags:
+- Frontend
+- Vue.js
+---
+
+`Vue.js`는 단일페이지 사용자 인터페이스(SPA, Single Page Application)를 만들기 위한 프론트엔드 프레임워크이다. 이번 포스트에서는 `Vue.js`의 기본적인 특징과 설치법에 대해 정리해보았다.
+
+<br>
+
+## Vue.js의 특징
+
+- jquery처럼 `<script>` 태그를 사용하여 CDN(Content Delivery Network)상의 주소를 간단히 참조할 수 있다.
+- 디렉티브를 사용하여 손쉬운 구현이 가능하다.
+- 뷰 라우터(vue-router)를 사용항 단일페이지 어플리케이션 구현이 쉽다.
+- ES6와 Webpack 번들링을 통해 대규모 어플리케이션을 단일 파일 컴포넌트로 빌드할 수 있다.
+- 가상 DOM을 지원하여 빠른 UI 렌더링 속도를 제공한다.(Vue 2.0 기준으로 React나 Angular보다 빠르다)
+- MVVM 패턴을 지향한다.(해당 패턴에 대해서는 다음 포스트에서 예제와 함께 설명해 놓았다.)
+
+<br>
+
+## Vue의 개발환경 설정
+
+|도구|내용|설치 링크|
+|:---:|:---|:---|
+|Node.js|서버 측 자바스크립트 언어 및 플랫폼|<a href="https://nodejs.org/ko/" target="_blank">Node.js 홈페이지</a>|
+|npm|노드 패키지 관리자|터미널에서 설치|
+|크롬 브라우저|렌더 환경을 위한 브라우저|-|
+|Vue.js devtools|크롬 브라우저 기반으로 작동하는 <br>Vue.js 전용 디버깅 도구.| 크롬 브라우저 주소창에 <br>chrome://extensions/|
+|Vue-cli|터미널에서 앱 작성을 위한 <br>기본 틀(폴더구조)을 제공하는 도구|터미널에서 설치|
+|Visual Studio Code||<a href="http://code.visualstudio.com" target="_blank">VSCode 홈페이지</a>|
+
+<br>
+
+
+## npm 및 vue-cli 설치
+
+### npm
+
+```powershell
+# window
+$ npm install -g npm
+
+# mac os - 루트권한으로 설치
+$ sudo npm install -g npm
+```
+
+<br>
+
+### vue-cli
+
+커멘드라인 인터페이스 기반의 스캐폴딩 도구. 스캐폴딩 도구라 함은 애플리케이션을 개발할 때 필요한 기본적인 인터페이스와 틀을 제공해주는 도구를 말한다.
+
+```powershell
+# window
+$ npm install -g vue-cli
+
+# mac os - 역시 루트권한으로 설치
+$ sudo npm install -g vue-cli
+```
+
+<br>
+
+
+## Vue 프로젝트 생성하기
+
+설치한 `vue-cli`로 프로젝트의 규모를 고려한 템플릿을 선택하여 프로젝트를 생성한다.
+
+
+```powershell
+# vue init <템플릿명> <프로젝트명>
+
+# simple 템플릿으로 설치한 경우
+$ vue init simple startvue
+
+? name startvue
+? author bbrubi <bbrubidev@gmail.com>
+
+   vue-cli · Generated "startvue".
+
+
+# webpack 템플릿으로 설치한 경우
+$ vue init webpack vuebookpractice
+
+? Project name vuebookpractice
+? Project description Vue.js book practice and study
+? Author bbrubi <bbrubidev@gmail.com>
+? Vue build standalone
+? Install vue-router? Yes
+? Use ESLint to lint your code? Yes
+? Pick an ESLint preset Standard
+? Setup unit tests with Karma + Mocha? No
+? Setup e2e tests with Nightwatch? No
+
+   vue-cli · Generated "vuebookpractice".
+
+   To get started:
+
+     cd vuebookpractice
+     npm install
+     npm run dev
+
+   Documentation can be found at https://vuejs-templates.github.io/webpack
+```
+
+프로젝트를 생성했으니 해당 폴더를 VSCode로 열면 된다.
+
+<br>
+
+## 첫 페이지 생성하고 브라우저에서 확인하기
+
+`simple` 템플릿으로 스캐폴딩한 경우 html 파일 하나만 생성된다. html 파일을 편집한 후 크롬 브라우저에 바로 띄워 확인해본다.
+
+
+### VSCode 플러그인으로 크롬 브라우저에 페이지 띄우기
+
+먼저 VSCode 플러그인 검색창에서 View in browser 항목을 찾아 설치한 후 반드시 `reload`해준다.
+
+그리고 (맥 기준으로) `cmd`+`fn`+`F1` 또는 펑션키 우선인 경우 `cmd`+`F1`을 누르면 바로 브라우저에 렌더되는 것을 확인할 수 있다.
+
+<br>
+
+### 개발자 도구 단축키
+
+`cmd`+`alt`+`I`(맥 기준)
+
+<br>
+
+### 직접 변수값 변경해보기
+
+렌더된 페이지는 다음과 같다.
+
+![vuesimple1](imgs/2017-10-16/vuesimple1.png)
+
+<br>
+
+직접 모델의 `message` 변수값을 개발자도구에서 변경해보면 다음과 같이 출력되는 것을 확인할 수 있다.
+
+![vuesimple2](imgs/2017-10-16/vuesimple2.png)
+
+<br>
+
+## 생소한 단어 정리
+
+### 1) 번들링 (`bundling`)
+
+여러 파일을 모아서 하나로 만드는 행위. 대표적인 도구(번들러)로는 `browerify`가 있다.
+
+<br>
+
+### 2) `browserify`
+
+여러 개의 의존성 있는 자바스크립트 코드를 참조하여 개발한 경우 이를 단일 자바스크립트 파일로 묶어주는 번들링 도구이다. (<a href="http://browserify.org/" target="_blank">홈페이지</a>)
+
+
+<br>
+
+### 3) `vueify`
+
+Vue.js를 컴포넌트로 번들링하기 위한 browerify 변환 기능을 제공한다.
+
+<br>
+
+### 4) `Webpack`
+
+현재 많이 사용하고 있는 자바스크립트 모듈 번들링 도구.
+
+<br>
+
+### 5) `vue-loader`
+
+Webpack에서 vue 컴포넌트를 번들링하기 위한 확장도구
+
+<br>
+
+### 6) `hot-reload`
+
+`*.vue` 파일을 수정할 때 서버의 재시작없이 변경내용으로 교체되는 것을 말한다. 또, 브라우저에서 페이지를 리로딩(re-loading)하지 않고 변경해주는 기능이다.
+해당 기능은 `vue-cli`로 프로젝트를 스캐폴딩했을 경우 바로 사용할 수 있다.
+
+<br>
+
+### 7) `linting`
+
+코드 검사도구. `*.vue` 파일에서는 ESLint를 사용한다. 초기 스캐폴딩시 사용하겠다고 하면 자동으로 적용해준다.
+
+<br>
+
+### 8) `PWA`(Progressive Web App)
+
+웹에 기반을 두고 앱을 지원하는 웹페이지를 뜻한다. 기존의 웹앱과 다른 점은 좀더 '네이티브 앱'에  가까운 경험을 제공하는 웹을 목표로 한다는 것이다. 즉, 좀더 안정적이고 사용자 인터렉션에 빠르게 반응하며 마치 앱을 사용하는 것처럼 몰입감 높은 사용자 경험을 제공해야 한다. 더 자세한 내용은 <a href="https://developers.google.com/web/progressive-web-apps/" target="_blank">구글 개발자 블로그 - PWA</a>를 참고하면 된다.
+
+<br>
+
+---
+
+## 마치며
+
+해당 포스트는 웹에서 얻은 참고 자료들과 원형섭님의 [Vue.js Quick Start] 도서를 바탕으로 공부한 내용을 요약, 정리하였다.
+
+<br>

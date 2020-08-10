@@ -1,0 +1,223 @@
+---
+title: Python _ Lv2. 자연수 뒤집어 리스트로 만들기
+date: 2017-10-31
+tags:
+- algorithm
+- python
+---
+
+### 문제 설명
+
+> digit_reverse함수는 양의 정수 n을 매개변수로 입력받습니다.
+n을 뒤집어 숫자 하나하나를 list로 표현해주세요
+예를 들어 n이 12345이면 [5,4,3,2,1]을 리턴하면 됩니다.
+
+
+<a href="https://programmers.co.kr/learn/challenge_codes/117" target="_blank">문제 보러가기</a>
+
+<br>
+
+## 코드 및 풀이
+
+숫자를 뒤집는 방법은 파이썬의 리스트 인덱싱과 슬라이싱을 활용하면 편리하다.
+
+```python
+def digit_reverse(n):
+    sn = str(n)
+    ln = len(n)
+    li = []
+    for i in range(ln):
+        li.append(int(sn[ln - i - 1]))
+    return li
+
+# 아래는 테스트로 출력해 보기 위한 코드입니다.
+print("결과 : {}".format(digit_reverse(12345)));
+```
+
+위의 코드에서 for문만 들여다보면 다음과 같은 방식으로 동작한다.
+
+```python
+sn = "12345"
+len(sn) = 5
+
+for i in range(len(sn)):
+    print(sn[len(sn)-i-1], end="")
+
+# sn[5 - 0 - 1] = sn[4] = 5
+# sn[5 - 1 - 1] = sn[3] = 4
+# sn[5 - 2 - 1] = sn[2] = 3
+# sn[5 - 3 - 1] = sn[1] = 2
+# sn[5 - 4 - 1] = sn[0] = 1
+# end="" 는 출력물을 띄어쓰기 없이 붙여준다.
+```
+
+<br>
+
+두 번째로 직접 푼 코드는 **재귀를 이용한 방식**이다.
+
+처음 코드를 짤 때는 숫자를 그대로 받아서 문자형으로 처리했기 때문에 나와야 할 결과 형태(리스트형)를 충족시키지 못했다.
+
+하지만 아래 코드에서 보듯이 외부함수 스코프에서 입력받은 n을 미리 숫자형 값으로 구성한 리스트로 바꾼 후 재귀를 적용하니 후처리를 하지 않아도 되었다!
+
+```python
+def digit_reverse(n):
+    # 입력받은 n 값을 반복문으로 나눠서 숫자형으로 리스트에 넣는다.
+    ln = [int(num) for num in str(n)]
+
+    def digit_recursive(ln):
+        # 종료조건 - 값이 없을 때는 ln을 반환하여 재귀를 종료시킨다.
+        if len(ln) < 1:
+            return ln
+
+        # 마지막 인덱스값을 앞으로 더하면서 재귀를 진행한다.
+        r = [ln[-1]] + digit_recursive(ln[:-1])
+
+        # 재귀값을 반환한다.
+        return r
+    # 내부 재귀함수를 실행한 값을 반환한다.
+    return digit_recursive(ln)
+
+
+digit_reverse(12345)
+# [5, 4, 3, 2, 1]
+```
+
+<br>
+
+## 다른 방식의 코드 및 풀이
+
+다른 사람의 코드를 참고하면 다음과 같다. `map()`함수를 사용하면 다음과 같이 한 줄로도 구현 가능하다. `map()` 함수는 제너레이터를 생성하기 때문에 `next()`로 값을 출력해볼 수 있다.
+
+```python
+n = "12345"
+next(reversed(n))  # '5'
+next(map(int, reversed(n)))  # 5
+```
+
+위의 식을 `list()`로 감싸주면 n 자리의 순서가 반대 순서대로 리스트에 삽입 및 출력된다.
+
+```python
+# 타인의 코드 - map(), reversed() 사용
+
+def digit_reverse_2(n):
+    return list(map(int, reversed(str(n))))
+
+print("결과 : {}".format(digit_reverse_2(12345)));
+# 결과 : [5, 4, 3, 2, 1]
+```
+
+<br>
+
+3번째 방식은 리스트 인덱싱을 활용한 방법이다. 먼저 n의 값을 숫자 자료형으로 바꾸어 리스트에 저장한 후 인덱싱 (`[::-1]`)을 통해 반대 방향으로 출력하였다.
+
+```python
+def digit_reverse_3(n):
+    return [int(x) for x in str(n)][::-1]
+
+print("결과 : {}".format(digit_reverse_2(12345)));
+# 결과 : [5, 4, 3, 2, 1]
+```
+
+<br>
+
+4번째 방식은 2번째 방식과 비슷하지만 이번에는 `reverse()`를  사용했다. `reverse()`는 리스트 요소 인덱스를 반대로 바꿀 때 편리하다.
+
+```python
+def digit_reverse_4(n):
+    answer = list(map(int, str(n)))
+    answer.reverse()
+
+    return answer
+
+print("결과 : {}".format(digit_reverse_2(12345)));
+# 결과 : [5, 4, 3, 2, 1]
+```
+
+<br>
+
+5번째 방식은 n을 10으로 나눈 나머지를 리스트에 하나씩 추가하는 방법으로 풀이했다.
+
+```python
+def digit_reverse_5(n):
+    li = []
+    while n > 0:
+        li += [n % 10]
+        n = n // 10
+    return li
+```
+
+위 while 반복문의 연산과정은 다음과 같다.
+
+```python
+# [5]
+# 1234
+# [5, 4]
+# 123
+# [5, 4, 3]
+# 12
+# [5, 4, 3, 2]
+# 1
+# [5, 4, 3, 2, 1]
+# 0
+```
+
+<br>
+
+마지막 방식은 `divmod()`라는 함수를 사용한 코드이다. `divmod(a, b)`는 2개의 숫자(a, b)를 입력받아 a를 b로 나눈 몫과 나머지를 튜플 형태로 리턴하는 함수이다.
+
+```
+>>> divmod(7, 3)
+(2, 1)
+>>> divmod(1.3, 0.2)
+(6.0, 0.099999999999999978)
+```
+
+n을 10으로 나누었을 때 몫과 나머지를 각각 n, a에 저장하고 a 값은 리스트에 저장한다. 5번째 방식을 내장함수로 쉽게 쓴 방법이라 할 수 있다.
+
+```python
+def digit_reverse_6(n):
+    answer = []
+    while n:
+        n, a = divmod(n, 10)
+        answer.append(n)
+    return answer
+```
+
+위 코드의 내부 동작방식은 다음과 같다.
+
+```python
+# [5]
+# [5, 4]
+# [5, 4, 3]
+# [5, 4, 3, 2]
+# [5, 4, 3, 2, 1]
+```
+
+<br>
+
+
+## 풀이 별 실행시간 측정하기
+
+각각의 함수를 100,000번 반복한 실행시간의 평균을 구했을 때 다음과 같이 시간이 걸린다. 이번에는 리스트 인덱싱과 `divmod()`를 사용한 코드가 가장 시간이 적게 걸렸다.
+
+```python
+print(avg_time(e.digit_reverse_1(1234567)))
+# 0.7139969966374338
+
+print(avg_time(e.digit_reverse_2(1234567)))
+# 0.8409988367930055
+
+print(avg_time(e.digit_reverse_3(1234567)))
+# 0.6010013748891652
+
+print(avg_time(e.digit_reverse_4(1234567)))
+# 0.7819980964995921
+
+print(avg_time(e.digit_reverse_5(1234567)))
+# 0.7530034054070711
+
+print(avg_time(e.digit_reverse_6(1234567)))
+# 0.6839982233941555
+```
+
+<br>

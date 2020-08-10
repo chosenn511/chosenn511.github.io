@@ -1,19 +1,19 @@
 {
   "name": "borderless",
   "private": true,
-  "description": "Gatsby Blog, 'Borderless' Theme By Junhobaik",
+  "description": "Blog, 'Borderless' Theme",
   "version": "3.0.0",
-  "author": "JunhoBaik",
+  "author": "Bbrubi",
   "keywords": [
     "gatsby"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/junhobaik/junhobaik.github.io"
+    "url": "https://github.com/bbrubidev/bbrubidev.github.io"
   },
   "bugs": {
-    "url": "https://github.com/junhobaik/junhobaik.github.io/issues"
+    "url": "https://github.com/bbrubidev/bbrubidev.github.io/issues"
   },
   "scripts": {
     "start": "gatsby develop",
