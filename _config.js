@@ -1,10 +1,10 @@
 module.exports = {
   /** Site MetaData (Required all)*/
-  title:  'development note',               // (* Required)
-  description: 'bbrubi development blog',   // (* Required)
-  author: 'bbrubi',                         // (* Required)
+  title:  'Development Note',               // (* Required)
+  description: 'Development Note Blog',   // (* Required)
+  author: 'Julia',                         // (* Required)
   language: 'ko-KR',                        // (* Required) html lang, ex. 'en' | 'en-US' | 'ko' | 'ko-KR' | ...
-  siteUrl: 'https://bbrubidev.github.io',                      // (* Required)
+  siteUrl: 'https://chosenn511.github.io',                      // (* Required)
 
   /** Header */
   profileImageFileName: 'profile.png', // include filename extension ex.'profile.jpg'
