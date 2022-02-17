@@ -4,7 +4,7 @@ module.exports = {
   description: 'Development Note Blog',   // (* Required)
   author: 'Julia',                         // (* Required)
   language: 'ko-KR',                        // (* Required) html lang, ex. 'en' | 'en-US' | 'ko' | 'ko-KR' | ...
-  siteUrl: 'https://chosenn511.github.io',                      // (* Required)
+  siteUrl: 'https://github.com/chosenn511/chosenn511.github.io.git',                      // (* Required)
 
   /** Header */
   profileImageFileName: 'profile.png', // include filename extension ex.'profile.jpg'
