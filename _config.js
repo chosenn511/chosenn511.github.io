@@ -17,7 +17,7 @@ module.exports = {
   company: '',
   location: 'Korea',
   email: 'chosenn511@gmail.com',
-  website: 'https://github.com/chosenn511/chosenn511.github.io.git',
+  website: 'https://chosenn511.github.io',
   linkedin: '',
   facebook: '',
   instagram: '',
