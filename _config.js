@@ -12,20 +12,20 @@ module.exports = {
     // If the file does not exist, it is replaced by a random image.
 
   /** Home > Bio information*/
-  comment: 'Developer, yet student',
+  comment: 'Web Backend Developer',
   // name: 'Seonjeong Hwang',
   company: '',
   location: 'Korea',
-  email: 'bbrubidev@gmail.com',
-  website: 'https://github.com/bbrubidev/bbrubidev.github.io.git',
+  email: 'chosenn511@gmail.com',
+  website: 'https://github.com/chosenn511/chosenn511.github.io.git',
   linkedin: '',
   facebook: '',
   instagram: '',
-  github: 'https://github.com/bbrubidev',
+  github: 'https://github.com/chosenn511',
 
   /** Post */
   enablePostOfContents: true,     // TableOfContents activation (Type of Value: Boolean. Not String)
-  disqusShortname: 'bbrubidev',   // comments (Disqus sort-name)
+  disqusShortname: 'chosenn511',   // comments (Disqus sort-name)
   enableSocialShare: true,        // Social share icon activation (Type of Value: Boolean. Not String)
 
   /** Optional */
