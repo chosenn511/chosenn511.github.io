@@ -32,6 +32,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.13.1",
     "@fortawesome/free-solid-svg-icons": "^5.13.1",
     "@fortawesome/react-fontawesome": "^0.1.11",
+    "@mdx-js/react": "^1.6.22",
     "@types/theme-ui": "^0.3.6",
     "disqus-react": "^1.0.9",
     "gatsby": "^2.32.13",
@@ -64,6 +65,7 @@
     "lodash": "^4.17.19",
     "mobile-detect": "^1.4.4",
     "moment": "^2.27.0",
+    "node-sass": "^4.14.1",
     "preact": "^10.4.7",
     "preact-render-to-string": "^5.1.10",
     "prism-themes": "^1.4.0",
@@ -77,7 +79,7 @@
     "react-share": "^4.2.0",
     "react-typography": "^0.16.19",
     "redux": "^4.0.4",
-    "theme-ui": "^0.3.1",
+    "theme-ui": "^0.2.52",
     "typography": "^0.16.19"
   },
   "devDependencies": {
